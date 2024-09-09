@@ -3,30 +3,15 @@ import Todo from "../Todo/todo";
 import TodoContext from "../../Context/TodoContext";
 
 function TodoList() {
-  const { todos, setTodos } = useContext(TodoContext);
+  const { todos, dispatch } = useContext(TodoContext);
   function onDeleteTodo(id) {
-    const newTodoList = todos.filter((todo) => {
-      return todo.id !== id;
-    });
-    setTodos(newTodoList);
+    dispatch({ type: "delete_todo", payload: { id } });
   }
   function onEditTodo(id, newTodo) {
-    const newTodos = todos.map((todo) => {
-      if (todo.id == id) {
-        todo.text = newTodo;
-      }
-      return todo;
-    });
-    setTodos(newTodos);
+    dispatch({ type: "edit_todo", payload: { id, newTodo } });
   }
   function onFinishTodo(state, id) {
-    const newTodos = todos.map((todo) => {
-      if (todo.id == id) {
-        todo.isCompleted = state;
-      }
-      return todo;
-    });
-    setTodos(newTodos);
+    dispatch({ type: "finish_todo", payload: { id, state } });
   }
   return (
     <>

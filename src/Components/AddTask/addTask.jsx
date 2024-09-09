@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import TodoContext from "../../Context/TodoContext";
-import { v4 as uuidv4 } from "uuid";
+
 
 function AddTask() {
-  const { todos, setTodos } = useContext(TodoContext);
+  const {dispatch}=useContext(TodoContext);
   const [todoText, setTodoText] = useState("");
 
   function onAddTodo(todoText) {
-    setTodos([...todos, { id: uuidv4(), text: todoText, isCompleted: false }]);
+    dispatch({type:"add_todo", payload:{todoText}});
     setTodoText("");
   }
   return (
