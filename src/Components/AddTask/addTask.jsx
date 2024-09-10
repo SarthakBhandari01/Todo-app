@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
-import TodoContext from "../../Context/TodoContext";
-
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function AddTask() {
-  const {dispatch}=useContext(TodoContext);
+  const dispatch = useDispatch();
   const [todoText, setTodoText] = useState("");
 
   function onAddTodo(todoText) {
-    dispatch({type:"add_todo", payload:{todoText}});
+    dispatch({ type: "add_todo", payload: { todoText } });
     setTodoText("");
   }
   return (

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-function TodoReducer(state, action) {
+function TodoReducer(state = [], action) {
   if (action.type == "add_todo") {
     return [
       ...state,
