@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
-function AddTask() {
-  const dispatch = useDispatch();
-  const [todoText, setTodoText] = useState("");
 
+function AddTask({addTodo}) {
+  const [todoText, setTodoText] = useState(""); 
+  
   function onAddTodo(todoText) {
-    dispatch({ type: "add_todo", payload: { todoText } });
+    addTodo({todoText});
     setTodoText("");
   }
   return (
